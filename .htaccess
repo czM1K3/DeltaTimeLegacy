@@ -1,0 +1,9 @@
+RewriteCond %{QUERY_STRING} ^(.*)i=[^&]+(.*)$ [NC]
+
+RewriteRule ^(.*)$ /$1?%1%2 [R=301,L]
+
+RewriteEngine On
+
+# all redirection HTTP -> HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ httpS://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
